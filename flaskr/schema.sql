@@ -1,6 +1,11 @@
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS locations;
+
 CREATE TABLE posts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
+    description TEXT NOT NULL,
     body TEXT NOT NULL,
     card_image_path TEXT NOT NULL,
     category_id INTEGER NOT NULL,
