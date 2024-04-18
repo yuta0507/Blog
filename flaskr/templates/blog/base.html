@@ -1,3 +1,11 @@
+{%
+    set MEDIA_URL = {
+        'linkedin': 'https://www.linkedin.com/in/yuta-kikkawa-0756a7206/',
+        'instagram': 'https://www.instagram.com/yutakikkawa/',
+        'github': 'https://github.com/yuta0507',
+    }
+%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,16 +45,19 @@
                         >Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Posts</a>
+                        <a
+                            class="nav-link {% if request.path == url_for('blog.posts') %}active{% endif %}"
+                            aria-current="page"
+                            href="{{ url_for('blog.posts') }}"
+                        >Posts</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
-                    </li>
+                    </li> -->
                 </ul>
-                <a href="#" class="bi mx-2"><span class="bi-linkedin"></span></a>
-                <a href="#" class="bi mx-2"><span class="bi-facebook"></span></a>
-                <a href="#" class="bi mx-2"><span class="bi-instagram"></span></a>
-                <a href="#" class="bi mx-2"><span class="bi-github"></span></a>
+                <a href="{{ MEDIA_URL['linkedin'] }}" target="_blank" rel="noopener" class="bi mx-2"><span class="bi-linkedin"></span></a>
+                <a href="{{ MEDIA_URL['instagram'] }}" target="_blank" rel="noopener" class="bi mx-2"><i class="bi bi-instagram"></i></a>
+                <a href="{{ MEDIA_URL['github'] }}" target="_blank" rel="noopener" class="bi mx-2"><span class="bi-github"></span></a>
             </div>
         </div>
     </nav>
@@ -63,10 +74,9 @@
                     <p>This is a blog made by Yuta, from Tokyo, Japan, documenting his favourite restaurants and menu in Sydney, to share with every food lover.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <a href="" class="footer-icon"><i class="bi bi-linkedin"></i></a>
-                    <a href="" class="footer-icon"><i class="bi bi-facebook"></i></a>
-                    <a href="" class="footer-icon"><i class="bi bi-instagram"></i></a>
-                    <a href="" class="footer-icon"><i class="bi bi-github"></i></a>
+                    <a href="{{ MEDIA_URL['linkedin'] }}" target="_blank" rel="noopener" class="footer-icon"><i class="bi bi-linkedin"></i></a>
+                    <a href="{{ MEDIA_URL['instagram'] }}" target="_blank" rel="noopener" class="footer-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="{{ MEDIA_URL['github'] }}" target="_blank" rel="noopener" class="footer-icon"><i class="bi bi-github"></i></a>
                 </div>
             </div>
         </div>
