@@ -12,3 +12,8 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 def index():
     return render_template('admin/index.html')
+
+@bp.route('/create')
+@login_required
+def create():
+    return render_template('admin/create.html')
