@@ -2,3 +2,8 @@
     font-size: smaller;
     color: red;
 }
+
+#collapse form {
+    margin-right: 20px;
+    margin-left: 20px;
+}
