@@ -10,8 +10,8 @@ class Post(object):
         card_image = CardImage
 
         self.db.execute(
-            'INSERT INTO posts' +
-            '(store_name, title, description, body, card_image_path, category_id, location_id, publish_flag)' +
+            'INSERT INTO posts'
+            '(store_name, title, description, body, card_image_path, category_id, location_id, publish_flag)'
             'VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
             (
                 vals['store_name'],
