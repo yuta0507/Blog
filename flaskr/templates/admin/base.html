@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+    {% block style %}{% endblock %}
+
 </head>
 
 <body>
@@ -42,6 +46,8 @@
             {% block content %}{% endblock %}
         </div>
     </main>
+
+    {% block script %}{% endblock %}
 </body>
 
 </html>
