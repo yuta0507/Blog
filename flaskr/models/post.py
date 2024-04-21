@@ -24,5 +24,6 @@ class Post(object):
                 vals['publish_flag']
             )
         )
+        self.db.commit()
 
 
