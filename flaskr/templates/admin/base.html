@@ -27,13 +27,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Post</a>
+                        <a
+                            class="nav-link {% if request.path == url_for('admin.index') %}active{% endif %}"
+                            aria-current="page" href="{{ url_for('admin.index') }}"
+                        >Post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Category</a>
+                        <a
+                            class="nav-link {% if request.path == url_for('admin.category') %}active{% endif %}"
+                            aria-current="page" href="{{ url_for('admin.category') }}"
+                        >Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Location</a>
+                        <a class="nav-link" aria-current="page" href="#">Location</a>
                     </li>
                 </ul>
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
@@ -46,6 +52,8 @@
             {% block content %}{% endblock %}
         </div>
     </main>
+
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
     {% block script %}{% endblock %}
 </body>
