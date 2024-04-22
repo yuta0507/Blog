@@ -6,6 +6,11 @@ class Location(Model):
             'SELECT * FROM locations'
         ).fetchall()
 
+    def fetch_names(self) -> list:
+        return self.db.execute(
+            'SELECT name FROM categories'
+        ).fetchall()
+
     def store(self, name: str) -> None:
         self.db.execute(
             'INSERT INTO locations (name) VALUES (?)',
