@@ -1,11 +1,7 @@
-from flaskr.db import get_db
-
+from flaskr.models.model import Model
 from flaskr.utils.card_image import CardImage
 
-class Post(object):
-    def __init__(self) -> None:
-        self.db = get_db()
-
+class Post(Model):
     def store(self, vals: dict) -> None:
         card_image = CardImage
 

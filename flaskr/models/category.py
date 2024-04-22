@@ -1,9 +1,6 @@
-from flaskr.db import get_db
+from flaskr.models.model import Model
 
-class Category(object):
-    def __init__(self) -> None:
-        self.db = get_db()
-
+class Category(Model):
     def fetch_all(self) -> list:
         return self.db.execute(
             'SELECT * FROM categories'
