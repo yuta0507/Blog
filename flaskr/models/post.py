@@ -2,6 +2,17 @@ from flaskr.models.model import Model
 from flaskr.utils.card_image import CardImage
 
 class Post(Model):
+    PUBLISHED = 1
+    ARCHIVED = 0
+
+    def fetch_index(self) -> list:
+        return self.db.execute(
+            'SELECT posts.id, posts.store_name, posts.title, categories.name as category_name, locations.name as location_name, posts.publish_flag '
+            'FROM posts '
+            'INNER JOIN categories ON posts.category_id = categories.id '
+            'INNER JOIN locations ON posts.location_id = locations.id'
+        ).fetchall()
+
     def store(self, vals: dict) -> None:
         card_image = CardImage
 
