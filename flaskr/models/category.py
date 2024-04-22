@@ -6,11 +6,6 @@ class Category(Model):
             'SELECT * FROM categories'
         ).fetchall()
 
-    def fetch_names(self) -> list:
-        return self.db.execute(
-            'SELECT name FROM categories'
-        ).fetchall()
-
     def store(self, name: str) -> None:
         self.db.execute(
             'INSERT INTO categories (name) VALUES (?)',
