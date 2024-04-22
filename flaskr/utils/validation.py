@@ -13,9 +13,9 @@ class Validation(object):
                 if rule == 'required':
                     self.error_message[name] = self.__required(value)
 
-    def __required(self, value) -> str | None:
+    def __required(self, value) -> str:
         if value == '':
             self.has_error = True
             return '*This field is required'
         else:
-            return None
+            return ''
