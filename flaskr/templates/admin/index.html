@@ -20,14 +20,20 @@
         </tr>
     </thead>
     <tbody>
+        {% for post in posts %}
         <tr>
-            <th scope="row">1</th>
-            <td><a href="">Yayoi</a></td>
-            <td>Japanese authentic style restaurant</td>
-            <td>Japanese</td>
-            <td>Town Hall</td>
-            <td><button class="btn btn-sm btn-success">Published</button></td>
+            <th scope="row">{{ post['id'] }}</th>
+            <td><a href="">{{ post['store_name'] }}</a></td>
+            <td>{{ post['title'] }}</td>
+            <td>{{ post['category_name'] }}</td>
+            <td>{{ post['location_name'] }}</td>
+            <td>
+                <button class="btn btn-sm btn-success">
+                    {% if post['publish_flag'] == published %}Published{% else %}Archived{% endif %}
+                </button>
+            </td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}
