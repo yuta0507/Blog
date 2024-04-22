@@ -39,7 +39,10 @@
                         >Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Location</a>
+                        <a
+                            class="nav-link {% if request.path == url_for('admin.location') %}active{% endif %}"
+                            aria-current="page" href="{{ url_for('admin.location') }}"
+                        >Location</a>
                     </li>
                 </ul>
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
