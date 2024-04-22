@@ -5,9 +5,12 @@ class Post(Model):
     def store(self, vals: dict) -> None:
         card_image = CardImage
 
+        if 'publish_flag' not in vals:
+            vals['publish_flag'] = self.ARCHIVED
+
         self.db.execute(
-            'INSERT INTO posts'
-            '(store_name, title, description, body, card_image_path, category_id, location_id, publish_flag)'
+            'INSERT INTO posts '
+            '(store_name, title, description, body, card_image_path, category_id, location_id, publish_flag) '
             'VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
             (
                 vals['store_name'],
