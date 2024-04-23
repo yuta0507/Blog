@@ -15,7 +15,7 @@ CREATE TABLE posts (
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     body TEXT NOT NULL,
-    card_image_path TEXT NOT NULL,
+    card_image_name TEXT NOT NULL,
     category_id INTEGER NOT NULL,
     location_id INTEGER NOT NULL,
     publish_flag INTEGER NOT NULL,
