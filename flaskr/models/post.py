@@ -13,28 +13,32 @@ class Post(Model):
             'INNER JOIN locations ON posts.location_id = locations.id'
         ).fetchall()
 
-    def store(self, vals: dict) -> None:
-        card_image = CardImage
+    def store(self, vals: dict) -> int:
+        publish_flag = self.ARCHIVED if 'publish_flag' not in vals else vals['publish_flag']
 
-        if 'publish_flag' not in vals:
-            vals['publish_flag'] = self.ARCHIVED
-
-        self.db.execute(
+        id = self.db.execute(
             'INSERT INTO posts '
-            '(store_name, title, description, body, card_image_path, category_id, location_id, publish_flag) '
+            '(store_name, title, description, body, card_image_name, category_id, location_id, publish_flag) '
             'VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
             (
                 vals['store_name'],
                 vals['title'],
                 vals['description'],
                 vals['body'],
-                card_image.generate_path(),
+                '',
                 vals['category_id'],
                 vals['location_id'],
-                vals['publish_flag']
+                publish_flag
             )
+        ).lastrowid
+
+        return id
+
+    def update_card_image_name(self, post_id: int, name: str) -> None:
+        self.db.execute(
+            'UPDATE posts SET card_image_name = ? WHERE id = ? ',
+            (name, post_id)
         )
-        self.db.commit()
 
     def change_publish_flag(self, post_id: int) -> None:
         current_flag = self.db.execute(

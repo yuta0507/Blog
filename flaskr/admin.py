@@ -8,6 +8,7 @@ from flaskr.utils.validation import Validation
 from flaskr.models.post import Post
 from flaskr.models.category import Category
 from flaskr.models.location import Location
+from flaskr.utils.card_image import CardImage
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -34,11 +35,12 @@ def create():
             'store_name': ['required'],
             'title': ['required'],
             'description': ['required'],
+            'card_image': ['required:file'],
             'category_id': ['required'],
             'location_id': ['required'],
             'publish_flag': [],
             'body': ['required'],
-        }, request.form)
+        }, request)
 
         if validation.has_error:
             return render_template(
@@ -49,7 +51,14 @@ def create():
                 error_message=validation.error_message
             )
 
-        post.store(request.form)
+        id = post.store(request.form)
+
+        card_image = CardImage(id)
+        filename = card_image.save(request.files['card_image'])
+
+        post.update_card_image_name(id, filename)
+
+        post.db.commit()
 
         return redirect(url_for('admin.index'))
 

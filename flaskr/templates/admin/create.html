@@ -25,7 +25,7 @@
 
 {% block content %}
 
-<form class="mt-3" action="{{ url_for('admin.create') }}" method="post">
+<form class="mt-3" action="{{ url_for('admin.create') }}" method="post" enctype="multipart/form-data">
     <div class="d-flex justify-content-between">
         <h2>Create a new post</h2>
         <div class="mt-2">
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <!-- <div class="mb-3 row">
+    <div class="mb-3 row">
         <label for="card-image" class="col-sm-2 col-form-label">Card Image</label>
         <div class="col-sm-10">
             <input type="file" accept=".png,.jpg,.jpeg" class="form-control" id="card-image" name="card_image">
@@ -77,7 +77,7 @@
                 <p class="error">{{ error_message.get('card_image', '') }}</p>
             {% endif %}
         </div>
-    </div> -->
+    </div>
 
     <div class="mb-3 row">
         <label for="category" class="col-sm-2 col-form-label">Category</label>
@@ -121,6 +121,9 @@
                 id="publish-flag" name="publish_flag" value="{{ published }}"
                 {% if 'publish_flag' in request.form and request.form['publish_flag'] == '1' %}checked{% endif %}
             >
+            {% if error_message %}
+                <p class="error">{{ error_message.get('publish_flag', '') }}</p>
+            {% endif %}
         </div>
     </div>
 
