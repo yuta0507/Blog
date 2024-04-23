@@ -36,4 +36,21 @@ class Post(Model):
         )
         self.db.commit()
 
+    def change_publish_flag(self, post_id: int) -> None:
+        current_flag = self.db.execute(
+            'SELECT publish_flag FROM posts WHERE id = ?',
+            (post_id,)
+        ).fetchone()['publish_flag']
 
+        changed_flag = None
+
+        if current_flag == self.PUBLISHED:
+            changed_flag = self.ARCHIVED
+        else:
+            changed_flag = self.PUBLISHED
+
+        self.db.execute(
+            'UPDATE posts SET publish_flag = ? WHERE id = ?',
+            (changed_flag, post_id)
+        )
+        self.db.commit()

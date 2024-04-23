@@ -97,3 +97,10 @@ def location():
         location.store(request.form['name'].title())
 
     return render_template('admin/location.html', locations=location.fetch_all())
+
+@bp.route('/change-status/<int:post_id>', methods=('POST',))
+@login_required
+def change_status(post_id):
+    post = Post()
+    post.change_publish_flag(post_id)
+    return redirect(url_for('admin.index'))
